@@ -1,42 +1,7 @@
-import { useState } from "react";
 import { ArrowDown, Laugh, Paperclip, ArrowUp } from "lucide-react";
 
 export function Main() {
-  const [messageInput, setMessageInput] = useState("");
-  const [messages, setMessages] = useState([
-    { content: "Hey There 🖐️​ How can I help you?", sender: "bot-message" },
-  ]);
-
-  // Função para lidar com o envio da mensagem do usuário
-  function handleOutGoingMessage() {
-    const userMessage = messageInput.trim();
-    if (userMessage) {
-      // Adiciona a mensagem do usuário ao estado
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { content: userMessage, sender: "user" },
-      ]);
-      setMessageInput(""); // Limpa o campo de entrada
-
-      // Simula a resposta do bot após 600ms
-      setTimeout(() => {
-        const botResponse = "I'm here to assist!"; // Simula uma resposta do bot
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          { content: botResponse, sender: "bot-message" },
-        ]);
-      }, 600);
-    }
-  }
-
-  // Função para lidar com o evento de pressionar a tecla Enter
-  function handleKeyDown(e) {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      handleOutGoingMessage(); // Chama a função de envio da mensagem
-    }
-  }
-
+  const [messageInput, setMessageInput] = useState('')
   return (
     <div className="chatbot-popup">
       {/* Header */}
@@ -111,6 +76,7 @@ export function Main() {
           <textarea
             placeholder="Message..."
             className="message-input"
+            required
           ></textarea>
           <div className="chat-controls">
             <button type="button" className="material-symbols-rounded">
@@ -119,7 +85,11 @@ export function Main() {
             <button type="button" className="material-symbols-rounded">
               <Paperclip />
             </button>
-            <button type="button" className="material-symbols-rounded">
+            <button
+              type="submit"
+              className="material-symbols-rounded"
+              id="send-message"
+            >
               <ArrowUp />
             </button>
           </div>

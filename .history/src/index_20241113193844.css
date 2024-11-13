@@ -147,7 +147,8 @@ body {
   background-color: #5350c4;
   border-radius: 13px 13px 13px 3px;
   color: #f2f2f2;
-  padding-right: 2rem;
+  padding-right: 1rem;
+  width: 100%;
 }
 
 .chat-body .bot-message .thinking-indicator {

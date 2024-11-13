@@ -38,7 +38,7 @@ export function Main() {
   }
 
   return (
-    <div className="chatbot-popup">
+     <div className="chatbot-popup">
       {/* Header */}
       <div className="chat-header">
         <div className="header-info">

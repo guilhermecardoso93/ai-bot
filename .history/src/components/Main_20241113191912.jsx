@@ -3,38 +3,16 @@ import { ArrowDown, Laugh, Paperclip, ArrowUp } from "lucide-react";
 
 export function Main() {
   const [messageInput, setMessageInput] = useState("");
-  const [messages, setMessages] = useState([
-    { content: "Hey There 🖐️​ How can I help you?", sender: "bot-message" },
-  ]);
 
-  // Função para lidar com o envio da mensagem do usuário
-  function handleOutGoingMessage() {
-    const userMessage = messageInput.trim();
-    if (userMessage) {
-      // Adiciona a mensagem do usuário ao estado
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { content: userMessage, sender: "user" },
-      ]);
-      setMessageInput(""); // Limpa o campo de entrada
-
-      // Simula a resposta do bot após 600ms
-      setTimeout(() => {
-        const botResponse = "I'm here to assist!"; // Simula uma resposta do bot
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          { content: botResponse, sender: "bot-message" },
-        ]);
-      }, 600);
-    }
+  const userMessage = e.target.value.trim();
+  if(e.key === 'Enter' && userMessage){
+    console.log(userMessage)
   }
 
-  // Função para lidar com o evento de pressionar a tecla Enter
-  function handleKeyDown(e) {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      handleOutGoingMessage(); // Chama a função de envio da mensagem
-    }
+  function inputMessage(e) {
+    e.preventDefault();
+    console.log(messageInput); // exibe a mensagem atual no console
+    setMessageInput(""); // limpa o campo de mensagem
   }
 
   return (
@@ -107,10 +85,13 @@ export function Main() {
 
       {/* Footer */}
       <div className="chat-footer">
-        <form action="" className="chat-form">
+        <form action="" className="chat-form" onSubmit={inputMessage}>
           <textarea
             placeholder="Message..."
             className="message-input"
+            required
+            value={messageInput}
+            onChange={(e) => setMessageInput(e.target.value)}
           ></textarea>
           <div className="chat-controls">
             <button type="button" className="material-symbols-rounded">
@@ -119,7 +100,11 @@ export function Main() {
             <button type="button" className="material-symbols-rounded">
               <Paperclip />
             </button>
-            <button type="button" className="material-symbols-rounded">
+            <button
+              type="submit"
+              className="material-symbols-rounded"
+              id="send-message"
+            >
               <ArrowUp />
             </button>
           </div>

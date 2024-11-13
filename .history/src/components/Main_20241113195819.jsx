@@ -7,11 +7,10 @@ export function Main() {
     { content: "Hey There 🖐️​ How can I help you?", sender: "bot-message" },
   ]);
 
-  // Função para lidar com o envio da mensagem do usuário
   function handleOutGoingMessage() {
     const userMessage = messageInput.trim();
     if (userMessage) {
-      // Adiciona a mensagem do usuário ao estado
+      // Adiciona a mensagem do usuário
       setMessages((prevMessages) => [
         ...prevMessages,
         { content: userMessage, sender: "user" },
@@ -29,16 +28,15 @@ export function Main() {
     }
   }
 
-  // Função para lidar com o evento de pressionar a tecla Enter
   function handleKeyDown(e) {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      handleOutGoingMessage(); // Chama a função de envio da mensagem
+      handleOutGoingMessage();
     }
   }
 
   return (
-    <div className="chatbot-popup">
+     <div className="chatbot-popup">
       {/* Header */}
       <div className="chat-header">
         <div className="header-info">
